@@ -9,8 +9,17 @@ import GetSiteNames from "./services/getSiteNames.js";
 import AccessSiteData from "./services/accessSiteData.js";
 import Decryptor from "./services/decryptor.js";
 import chalk from "chalk";
+import dotenv from "dotenv";
+import process from "process";
+dotenv.config();
 
 async function masterFunction() {
+    let userPassword = await input.text(`Enter the master password: `);
+    // User authentication
+    if (userPassword != process.env.MASTER_PASSWORD) {
+        console.log(chalk.red(`INVALID PASSWORD`));
+        process.exit();
+    }
     console.clear();
     await Welcome();
     const userInput = await Menu();
