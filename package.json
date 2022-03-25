@@ -1,0 +1,18 @@
+{
+    "name": "passwordmanager",
+    "version": "1.0.0",
+    "description": "Just a program to manage passwords",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "type": "module",
+    "author": "Sam-Varghese",
+    "license": "ISC",
+    "dependencies": {
+        "chalk": "^5.0.1",
+        "figlet": "^1.5.2",
+        "input": "^1.0.1",
+        "mongodb": "^4.4.1"
+    }
+}
