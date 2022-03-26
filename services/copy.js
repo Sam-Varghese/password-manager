@@ -7,6 +7,7 @@ export default function CopyText(text) {
         child_process.spawn("clip").stdin.end(util.inspect(text));
         resolve(`Password copied to clipboard`);
     }).then((data) => {
+        console.log(chalk.yellow(`ATTENTION: Please don't forget to remove the start and end single quotes before pasting.`))
         console.log(chalk.green(data));
     });
 }

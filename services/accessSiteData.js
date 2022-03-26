@@ -11,8 +11,8 @@ export default async function AccessSiteData(siteName) {
             if (error) {
                 reject(`Failed to connect to the database`);
             } else {
-                let dbo = db.db(`FakePasswords1`);
-                dbo.collection(`Passwords`).findOne(
+                let dbo = db.db(databaseName);
+                dbo.collection(collectionName).findOne(
                     { siteName: siteName },
                     (err, result) => {
                         if (err) {

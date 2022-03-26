@@ -11,10 +11,14 @@ import Decryptor from "./services/decryptor.js";
 import chalk from "chalk";
 import dotenv from "dotenv";
 import process from "process";
+import UpdateSiteName from "./services/updateSiteName.js";
+import UpdateUrl from "./services/updateUrl.js";
+import UpdatePassword from "./services/updatePassword.js";
 dotenv.config();
 
 async function masterFunction() {
-    let userPassword = await input.text(`Enter the master password: `);
+    console.clear();
+    let userPassword = await input.password(`Enter the master password: `);
     // User authentication
     if (userPassword != process.env.MASTER_PASSWORD) {
         console.log(chalk.red(`INVALID PASSWORD`));
@@ -23,6 +27,10 @@ async function masterFunction() {
     console.clear();
     await Welcome();
     const userInput = await Menu();
+
+    // Declaring variables
+    let siteNames, sitesSelected;
+
     switch (userInput) {
         case `Store password`:
             let siteName = await input.text(`Enter the name of site: `);
@@ -58,8 +66,8 @@ async function masterFunction() {
             }
             break;
         case `Retrieve password`:
-            const siteNames = await GetSiteNames();
-            const sitesSelected = await input.checkboxes(
+            siteNames = await GetSiteNames();
+            sitesSelected = await input.checkboxes(
                 `Select the class: `,
                 siteNames
             );
@@ -88,13 +96,58 @@ async function masterFunction() {
                     chalk.blue(`Auto password: `),
                     chalk.green(siteData.autoPassword)
                 );
-                console.log(
-                    chalk.blue(`PASSWORD: `),
-                    chalk.green(decryptedPassword)
+                const showPassword = await input.confirm(
+                    `Would you like to see the password?`
                 );
+                if (showPassword) {
+                    console.log(
+                        chalk.blue(`PASSWORD: `),
+                        chalk.green(decryptedPassword)
+                    );
+                }
                 CopyText(decryptedPassword);
             }
             break;
+        case `Update the password`:
+            siteNames = await GetSiteNames();
+            sitesSelected = await input.checkboxes(
+                `Select the class: `,
+                siteNames
+            );
+            for (let i = 0; i < sitesSelected.length; i++) {
+                let updateThis = await input.checkboxes(
+                    `Select the information you wanna update: `,
+                    [`Update site name`, `Update url`, `Update password`]
+                );
+                switch (updateThis) {
+                    case `Update site name`:
+                        let newSiteName = await input.text(
+                            `Enter the new site name: `
+                        );
+                        await UpdateSiteName(sitesSelected[i], newSiteName);
+                        break;
+                    case `Update url`:
+                        let updatedUrl = await input.text(
+                            `Enter the updated URL: `
+                        );
+                        await UpdateUrl(sitesSelected[i], updatedUrl);
+                        break;
+                    case `Update password`:
+                        let autoPassword = await input.confirm(
+                            `Would you like to have password auto generated?`
+                        );
+                        let newPassword;
+                        if (autoPassword) {
+                            newPassword = await GeneratePassword();
+                        } else {
+                            newPassword = await input.text(
+                                `Enter the password: `
+                            );
+                        }
+                        await UpdatePassword(sitesSelected[i], newPassword);
+                        break;
+                }
+            }
     }
 }
 
