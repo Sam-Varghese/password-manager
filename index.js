@@ -14,17 +14,27 @@ import process from "process";
 import UpdateSiteName from "./services/updateSiteName.js";
 import UpdateUrl from "./services/updateUrl.js";
 import UpdatePassword from "./services/updatePassword.js";
+import InitializeApplication from "./services/initializer.js";'
+import fs from "fs";
 dotenv.config();
 
 async function masterFunction() {
+    // Detecting if this is the first time application is getting run...
+    fs.stat(".env", async(error, stats) => {
+        if (error.code === "ENOENT") {
+            // File does not exists
+            await InitializeApplication();
+        }
+    })
     console.clear();
     let userPassword = await input.password(`Enter the master password: `);
-    // User authentication
+    // User authentication through master password
     if (userPassword != process.env.MASTER_PASSWORD) {
         console.log(chalk.red(`INVALID PASSWORD`));
         process.exit();
     }
     console.clear();
+    // Figlet fonts
     await Welcome();
     const userInput = await Menu();
 
