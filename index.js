@@ -14,7 +14,7 @@ import process from "process";
 import UpdateSiteName from "./services/updateSiteName.js";
 import UpdateUrl from "./services/updateUrl.js";
 import UpdatePassword from "./services/updatePassword.js";
-import InitializeApplication from "./services/initializer.js";'
+import InitializeApplication from "./services/initializer.js";
 import fs from "fs";
 dotenv.config();
 
@@ -158,6 +158,10 @@ async function masterFunction() {
                         break;
                 }
             }
+            break;
+        default:
+            console.log(chalk.red(`Incorrect option selected.`));
+            await masterFunction();
     }
 }
 
