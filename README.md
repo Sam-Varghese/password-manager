@@ -6,6 +6,6 @@
 
 ---
 
-- This is a password manager, which can generate, store, retrieve, and update passwords.
-- Built in Node js.
-- Uses Mongodb for storage.
+- This is a password manager, which can [generate](https://github.com/Sam-Varghese/password-manager/blob/main/services/generateRandomPassword.js), [store](https://github.com/Sam-Varghese/password-manager/blob/main/services/storePassword.js), [retrieve](https://github.com/Sam-Varghese/password-manager/blob/main/services/accessSiteData.js), and update passwords.
+- Built in [Node js](https://nodejs.org/en/).
+- Uses [Mongodb](https://www.mongodb.com/) for storage.
