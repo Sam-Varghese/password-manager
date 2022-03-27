@@ -19,13 +19,11 @@ import fs from "fs";
 dotenv.config();
 
 async function masterFunction() {
-    // Detecting if this is the first time application is getting run...
-    fs.stat(".env", async(error, stats) => {
-        if (error.code === "ENOENT") {
+    //Detecting if this is the first time application is getting run...
+        if (!fs.existsSync(".env")) {
             // File does not exists
             await InitializeApplication();
         }
-    })
     console.clear();
     let userPassword = await input.password(`Enter the master password: `);
     // User authentication through master password

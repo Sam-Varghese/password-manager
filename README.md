@@ -10,4 +10,4 @@
 - Built in [Node js](https://nodejs.org/en/).
 - Uses [Mongodb](https://www.mongodb.com/) for storage.
 - Password that's generated, is random, and is of any length between 18, 42.
-- Password that's generated, is inspired by this [linkedin post](https://www.linkedin.com/feed/update/urn:li:activity:6906146245585330176/)
+- Password that's generated, is inspired by this [linkedin post](https://docs.aista.com/blog/i-can-probably-hack-your-password-in-minutes)

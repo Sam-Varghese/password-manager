@@ -2,9 +2,7 @@ import fs from "fs";
 import input from "input";
 import chalk from "chalk";
 
-const envFileName = "rough.env";
-
-export default async function InitializeApplication() {
+export default async function InitializeApplication(envFileName) {
     console.clear();
     return new Promise(async (resolve, reject) => {
         const databaseName = await input.text(`Enter the database name: `, {
@@ -23,8 +21,8 @@ export default async function InitializeApplication() {
             `MASTER_PASSWORD = "${masterPassword}"\nMONGODB_PORT = "mongodb://localhost:${mongodbPort}/"\nDATABASE_NAME = "${databaseName}"\nCOLLECTION_NAME: "${collectionName}"`,
             (error) => {
                 if (error) {
-                    throw error;
                     reject(`Failed to create .env file.`);
+                    throw error;
                 } else {
                     console.log(chalk.green(`Made .env file...`));
                     console.log(chalk.blue(`Initialized the application.`));
@@ -34,4 +32,3 @@ export default async function InitializeApplication() {
         );
     });
 }
-InitializeApplication();
