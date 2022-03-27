@@ -37,3 +37,14 @@
 - Execute [index.js](./index.js) (Execution command: `node index.js`).
 
 ---
+
+## Advantages
+
+---
+
+Here are the advantages of using this program:
+
+- Generate passwords which'll take trillions of years to crack.
+- Made in [Node js](https://nodejs.org) which is a JavaScript runtime built on [Chrome's V8 JavaScript engine](https://v8.dev/).
+- This gives the program high speed and excellent performance.
+- Program encrypts all the password you provide. This ensures privacy.
