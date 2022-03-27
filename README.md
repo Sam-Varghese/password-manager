@@ -32,6 +32,8 @@
 
 ---
 
-- Fork the repository.
-- Now clone the repository.
+- [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the [repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories).
+- Now [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) the repository.
 - Execute [index.js](./index.js) (Execution command: `node index.js`).
+
+---

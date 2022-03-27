@@ -1,3 +1,4 @@
+// Importing necessary modules from services folder...
 import input from "input";
 import Welcome from "./components/welcome.js";
 import Menu from "./components/menu.js";
@@ -18,6 +19,7 @@ import InitializeApplication from "./services/initializer.js";
 import fs from "fs";
 dotenv.config();
 
+// Master function
 async function masterFunction() {
     //Detecting if this is the first time application is getting run...
         if (!fs.existsSync(".env")) {
@@ -25,6 +27,7 @@ async function masterFunction() {
             await InitializeApplication();
         }
     console.clear();
+    // ASking master password for auth.
     let userPassword = await input.password(`Enter the master password: `);
     // User authentication through master password
     if (userPassword != process.env.MASTER_PASSWORD) {
@@ -32,13 +35,15 @@ async function masterFunction() {
         process.exit();
     }
     console.clear();
-    // Figlet fonts
+    // If user gives the correct master password
+    // Figlet fonts and menu...
     await Welcome();
     const userInput = await Menu();
 
     // Declaring variables
     let siteNames, sitesSelected;
 
+    // Checking the menu item selected by the user
     switch (userInput) {
         case `Store password`:
             let siteName = await input.text(`Enter the name of site: `);
