@@ -18,10 +18,20 @@
 
 ---
 
+## System requirements
+
+---
+
+- [Node js](https://nodejs.org)
+- [Mongo db](https://www.mongodb.com)
+- [Git](https://git-scm.com/)
+
+---
+
 ## Installation
 
 ---
 
 - Fork the repository.
 - Now clone the repository.
-- Execute [index.js](./index.js).
+- Execute [index.js](./index.js) (Execution command: `node index.js`).
